@@ -311,7 +311,7 @@ bool IOMapSerialize::saveHouseInfo()
 		House* house = it.second;
 
 		std::string listText;
-		if (house->getAccessList(GUEST_LIST, listText) && !listText.empty()) {
+		/*if (house->getAccessList(GUEST_LIST, listText) && !listText.empty()) {
 			if (!stmt.addRow(fmt::format("{:d}, {:d}, {:s}", house->getId(), tfs::to_underlying(GUEST_LIST),
 			                             db.escapeString(listText)))) {
 				return false;
@@ -327,7 +327,7 @@ bool IOMapSerialize::saveHouseInfo()
 			}
 
 			listText.clear();
-		}
+		}*/
 
 		for (Door* door : house->getDoors()) {
 			if (door->getAccessList(listText) && !listText.empty()) {
