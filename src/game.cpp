@@ -3305,6 +3305,13 @@ void Game::playerTurn(uint32_t playerId, Direction dir)
 	if (!g_events->eventPlayerOnTurn(player, dir)) {
 		return;
 	}
+	
+	//Hold control and a direction to dash through anything
+	if (player->getDirection() == dir) {
+		auto pos = player->getPosition();
+		auto nextPos = getNextPosition(dir, pos);
+		internalTeleport(player, nextPos, true);
+	}
 
 	player->resetIdleTime();
 	internalCreatureTurn(player, dir);
